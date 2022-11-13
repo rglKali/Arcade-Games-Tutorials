@@ -4,7 +4,7 @@ import random
 
 # Создаём класс Cell с наследованием класса Sprite
 class Cell(arcade.Sprite):
-    def __init__(self, x, y):
+    def __init__(self, x: int, y: int):
         super().__init__()
 
         # Флаг bomb означает, есть ли в клетке бомба
@@ -47,7 +47,7 @@ class Game(arcade.Window):
                 # Добавляем созданную клетку в наш список
                 self.cells.append(cell)
 
-    def reveal(self, cell):
+    def reveal(self, cell: Cell):
         # Проверим, является ли клетка уже открытой с флажком
         # В этих случаях мы не можем с ней взаимодействовать
         if cell.is_open or cell.is_flag:
@@ -103,6 +103,9 @@ class Game(arcade.Window):
                 if bombs == 0:
                     for neighbor in neighbors:
                         self.reveal(neighbor)
+
+    def game_over(self):
+        pass
 
     def on_draw(self):
         # Необходимая команда, чтобы запустить движок
